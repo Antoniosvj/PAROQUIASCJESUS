@@ -1,14 +1,20 @@
+import { useNavigate } from 'react-router-dom';
 import style from './Botao.module.css';
 
-const Botao = (props) =>{
-    const {nomeBotao} = props
+const Botao = ({ nomeBotao }) =>{
+    const navigate = useNavigate()
+
+    const handleClick = () =>{
+        navigate('/Comunidade', {state:{nomeComunidade:nomeBotao}});
+    }
+
     return(
-        <a 
+        <button 
             className={style.Botao}
-            href="#"
+            onClick={handleClick}
         >
             {nomeBotao}
-        </a>
+        </button>
     )
 };
 export { Botao };

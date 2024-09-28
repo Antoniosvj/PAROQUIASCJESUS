@@ -1,3 +1,5 @@
+import { Comunidades } from  "../../components/index";
+
 import foto from "../../assets/images/paroquia.png";
 import foto1 from "../../assets/images/image.png";
 import foto2 from "../../assets/images/passionista.gif";
@@ -87,6 +89,7 @@ const Sobre = () => {
           <p>Padre Victor Franco Soares, CP</p>
         </div>
       </section>
+      <Comunidades />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import {
-  Comunidades,
+  ComunidadePage,
   Devocoes,
   Home,
   Liturgia,
@@ -20,7 +20,7 @@ const Router = () => {
           <Route path="/Liturgia" element={<Liturgia />} />
           <Route path="/Oracoes" element={<Oracoes />} />
           <Route path="/Devocoes" element={<Devocoes />} />
-          <Route path="/Comunidades" element={<Comunidades />} />
+          <Route path="/Comunidade" element={<ComunidadePage />} />
           <Route path="*" element={<Page404 />}/>
         </Route>
     </Routes>
