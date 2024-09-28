@@ -1,0 +1,138 @@
+.Home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.FolderInicial{
+    background-image:  url('../../assets/images/Capa-10.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 1000px;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+.FolderInicial h1{
+    font-size: 2.4rem;
+    text-align: left;
+    width: 350px;
+}
+
+.container{
+    width: 800px;
+}
+.Paroquia{
+    border: 2px solid var(--vermelho);
+    border-radius: 12px;
+    width: 1000px;
+    padding: 10px auto;
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+.Paroquia div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.ParoquiaCard{
+    border:2px solid var(--cinza-escuro);
+    width: 350px;
+    margin: 15px ;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    gap:5px;
+}
+.ParoquiaCard img{
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 12px;
+}
+
+.ParoquiaCard p{
+    color: var(--preto);
+    font-weight: 100;
+}
+.ContainerContatos{
+    display: flex;
+    flex-direction: row;
+    width: 1000px;
+    margin-top: 30px;
+    justify-content: space-between;
+}
+
+.ContainerIcons{
+    display: flex;
+    justify-content: space-between;
+}
+.ContainerIcons img{
+    width: 80px;
+}
+
+/*telas de celulares*/
+@media screen and (max-width: 576px) {
+   
+    .FolderInicial{
+        width: 90%;
+        background-size: 100%;
+        height: 200px;
+        flex-direction: row;
+        padding: 5px;
+        justify-content: center;
+        align-items: end;
+        margin-bottom: 10px;
+    }
+    .FolderInicial h1{
+        background-color: rgb(255,255,255, 0.8);
+        border-radius: 12px;
+        font-size: 1rem;
+        text-align: center;
+        padding: 5px 10px;
+    }
+    .container{
+        width: 100%;
+    }
+    .Paroquia{
+        width: 95%;
+        margin: 8px;
+    }
+    .Paroquia div{
+        flex-direction: column;
+    }
+
+    .ContainerParoquiaCard{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .ParoquiaCard{
+        width: 90%;
+    }
+    .ParoquiaCard img{
+        width: 95%;
+    }
+    .ParoquiaCard p{
+        color: var(--preto);
+        font-weight: 100;
+    }
+    .ContainerContatos{
+        flex-direction: column;
+        width: 90%;
+        margin-top: 10px;
+        justify-content: space-between;
+    }
+    
+    .ContainerIcons{
+        display: flex;
+        justify-content: space-between;
+    }
+    .ContainerIcons img{
+        width: 60px;
+    }
+}
