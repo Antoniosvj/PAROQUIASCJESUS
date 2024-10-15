@@ -1,0 +1,27 @@
+.container{
+    background-color: var(--cinza-escuro);
+    width: 500px;
+    margin: 30px auto;
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.container form{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    justify-content: space-between;
+    align-items: center;
+}
+.containerInput input{
+    width: 200px;
+    height: 1.5rem;
+    border-radius: 5px;
+
+}
+.container form button{
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 5px 15px;
+    border-radius: 5px;
+}

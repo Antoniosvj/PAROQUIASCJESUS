@@ -18,11 +18,11 @@ const Comunidade = ({ nomeComunidade }) =>{
     return(
         <div className={style.Comunidade}>
             <h1>Comunidade {nomeComunidade}</h1>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde molestiae excepturi sapiente totam corrupti nisi ad animi? Tenetur corrupti dignissimos reiciendis consectetur. Vitae exercitationem optio voluptates mollitia doloribus repellendus delectus.</p>
 
             {comunidade && (
                 <>
                     <img src={comunidade.imagem} alt={nomeComunidade} />
+                    <p>{comunidade.descricao}</p>
                     <iframe 
                         className={style.iframe}
                         src={comunidade.mapaUrl}
@@ -30,7 +30,7 @@ const Comunidade = ({ nomeComunidade }) =>{
                         loading="lazy" 
                         referrerpolicy="no-referrer-when-downgrade"
                     ></iframe>
-
+                    
                 </>
             )}
         </div>
