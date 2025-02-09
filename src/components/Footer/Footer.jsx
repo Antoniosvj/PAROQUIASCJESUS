@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import style from "./Footer.module.css";
-import logo1 from "../../assets/images/logo_paroquia.png";
-import logo2 from "../../assets/images/logo_paroquia2.png";
-import logo3 from "../../assets/images/passionista.gif";
+const logo1 = "../../../public/images/logo_paroquia.png";
+const logo2 = "../../../public/images/logo_paroquia2.png";
+const logo3 = "../../../public/images/passionista.gif";
 
 const Footer = () => {
   return (
@@ -10,11 +10,12 @@ const Footer = () => {
       <div className={style.containerLinks}>
         <Link to="/Home">Home</Link>
         <Link to="/Sobre">Sobre</Link>
+        <Link to="/Liturgia">Liturgia</Link>
       </div>
       <div className={style.containerLinks}>
-        <Link to="/Liturgia">Liturgia</Link>
         <Link to="/Oracoes">Orações</Link>
         <Link to="/Devocoes">Devoções e Carismas</Link>
+        <Link to="/Admin">Login</Link>
       </div>
 
       

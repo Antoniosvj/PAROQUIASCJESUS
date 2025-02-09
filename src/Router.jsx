@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import {
   ComunidadePage,
   Devocoes,
@@ -8,19 +7,11 @@ import {
   Oracoes,
   Sobre,
   Page404,
-  Login,
+  Admin
 } from "./pages";
 import { LayoutWeb } from "./layouts";
-import { AdminDashboard } from "./Admin/AdminDashboard";
 
 const Router = () => {
-  const [token, setToken] = useState('');
-  const navigate = useNavigate();
-
-  const handleLogin = (token) =>{
-    setToken(token);
-    navigate('/Admin');
-  };
 
   return (
     <Routes>
@@ -31,14 +22,9 @@ const Router = () => {
           <Route path="/Liturgia" element={<Liturgia />} />
           <Route path="/Oracoes" element={<Oracoes />} />
           <Route path="/Devocoes" element={<Devocoes />} />
-          <Route path="/Comunidade" element={<ComunidadePage />} />
-          <Route path="/Login" element={<Login onLogin={handleLogin}/>} />
-
-          {/* */}
-          <Route 
-            path="/Admin" 
-            element={token ? <AdminDashboard />: <Login onLogin={handleLogin}/>}
-          />
+          <Route path="/Comunidade/:id" element={<ComunidadePage />} />
+          <Route path="/Admin" element={<Admin/>}/>
+        
             
           <Route path="*" element={<Page404 />}/>
         </Route>

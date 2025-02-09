@@ -1,77 +1,109 @@
-import { useState } from "react";
-import devocoes from "../../assets/devocoes.json";
+import { useEffect, useState } from "react";
 import menu from "../../assets/icons/menu-aberto.png";
-
 import style from "./Devocoes.module.css";
 import { Link } from "react-router-dom";
+import { PcomQuebraLinha } from "../../components";
 
 const Devocoes = () => {
-  const [devocaoAtual, setDevocaoAtual] = useState(devocoes.SCJesus);
+  const [devocaoAtual, setDevocaoAtual] = useState();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [receberDevocao, setReceberDevocao] = useState([]);
 
-  const clickBotao = (devocaoKey) => {
-    const devocao = devocoes[devocaoKey];
-    setDevocaoAtual(devocao);
+  const url = 'https://www.paroquiascjesus.com.br/api/api/';
+
+  const carregarDevocoes = async () => {
+    try {
+      const response = await fetch(`${url}devocao.php`);
+
+      if(!response.ok){
+        throw new Error(`Erro: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      setReceberDevocao(data.data);
+      // console.log(data.data);
+    } catch (error) {
+      console.error("Erro ao carregar devoções: ", error);
+    }
+  };
+
+  const clickBotao = (devocaoId) =>{
+    const devocaoSelecionada = receberDevocao.find((devocao) => devocao.id ===devocaoId);
+    if(devocaoSelecionada){
+      setDevocaoAtual(devocaoSelecionada);
+    } 
     setMenuOpen(false);
-  };
-
-  const splitDevocao = (texto) =>{
-    return texto.split("\n\n").map((paragrafo, index) =>(
-      <p key={index}>{paragrafo}</p>
-    ))
   }
+  
+  
+     const clickMenu = () => {
+       setMenuOpen(!menuOpen);
+     };
 
-  const clickMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+      useEffect (() => {
+          carregarDevocoes();
+        }, []);
+     
 
   return (
-    <div className={style.Devocoes}>
-      <div className={style.containerDevocao}>
-        <h1>Devoções e Carismas</h1>
-        <Link to="#" onClick={() => clickMenu()}>
-        <img src={menu} alt="" className={style.menu} />
-        </Link>
-      </div>
+  
+     <div className={style.Devocoes}>
+       <div className={style.containerDevocao}>
+         <h1>Devoções e Carismas</h1>
+         <Link to="#" onClick={() => clickMenu()}>
+           <img src={menu} alt="" className={style.menu} />
+         </Link>
+       </div>
 
-      <section>
-        <div className={style.containerLinks}>
-          <a href="#" onClick={() => clickBotao("SCJesus")}>
-            Sagrado Coração de Jesus
-          </a>
-          <a href="#" onClick={() => clickBotao("SLourenco")}>
-            São Lourenço
-          </a>
-          <a href="#" onClick={() => clickBotao("Passionistas")}>
-            Carisma Passionista
-          </a>
-        </div>
-        { menuOpen && (
+       <section>
+         <div className={style.containerLinks}>
+           {receberDevocao.length === 0 ?(
+            <p>Carregando Devoções...</p>
+           ): (
+            receberDevocao.map((devocao) => (
+              <a
+                href="#"
+                key={devocao.id}
+                onClick={() =>clickBotao(devocao.id)}
+              >
+                {devocao.titulo}
+              </a>
+            ))
+           )}
+         </div>
+
+         {menuOpen && (
           <div className={style.menuOpen}>
-          <a href="#" onClick={() => clickBotao("SCJesus")}>
-            Sagrado Coração de Jesus
-          </a>
-          <a href="#" onClick={() => clickBotao("SLourenco")}>
-            São Lourenço
-          </a>
-          <a href="#" onClick={() => clickBotao("Passionistas")}>
-            Carisma Passionista
-          </a>
-        </div>
-        )}
-        <article id="cotainerOracao">
+            {receberDevocao.length === 0 ?(
+            <p>Carregando Devoções...</p>
+           ): (
+            receberDevocao.map((devocao) => (
+              <a
+                href="#"
+                key={devocao.id}
+                onClick={() =>clickBotao(devocao.id)}
+              >
+                {devocao.titulo}
+              </a>
+            ))
+           )}
+          </div>
+         )}
+         
+         <article id="cotainerOracao">
           {devocaoAtual ? (
             <div>
               <h2>{devocaoAtual.titulo}</h2>
               <h3>{devocaoAtual.subtitulo}</h3>
-              <p>{splitDevocao(devocaoAtual.devocao)}</p>
+              <PcomQuebraLinha texto={devocaoAtual.devocao}/>
+              <a><small>{devocaoAtual.font}</small></a>
             </div>
-          ) : (
-            <p>Orações aqui</p>
+          ): (
+            <p>Clique em uma devoção para abrir...</p>
           )}
-        </article>
-      </section>
-    </div>
-  );
-};
+         </article>
+       </section>
+     </div>
+   );
+ };
 export { Devocoes };

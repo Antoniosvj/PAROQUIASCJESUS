@@ -1,14 +1,14 @@
 import { useLocation } from 'react-router-dom';
 import { Comunidade } from '../../components';
+import { useEffect } from 'react';
 
 const ComunidadePage = () => {
-    const location = useLocation();
-    console.log(location);
-    const { nomeComunidade } = location.state || {nomeComunidade: 'Comunidade desconhecida'};
 
+    const location = useLocation();
+    const { id } = location.state || {};
     return (
         <div>
-            <Comunidade nomeComunidade={nomeComunidade} />
+            <Comunidade nomeComunidade={id} />
         </div>
     );
 };

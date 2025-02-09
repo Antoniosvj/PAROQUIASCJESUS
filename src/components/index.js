@@ -4,3 +4,6 @@ export * from './Comunidade';
 export * from './Footer';
 export * from './Header';
 export * from './Main';
+export * from './Admin';
+export * from './PcomQuebraLinha';
+export * from './HomePublicacao/HomePublicacao';

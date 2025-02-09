@@ -11,7 +11,8 @@
     align-items: center;
     gap:20px;
 }
-.containerSobre img{
+
+.containerImagem img{
     border-radius: 12px;
     box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.75);

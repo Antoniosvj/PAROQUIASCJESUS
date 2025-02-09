@@ -1,162 +1,180 @@
-import { useState } from "react";
-import oracoes from "../../assets/oracoes.json";
+import { useEffect, useState } from "react";
 import menu from "../../assets/icons/menu-aberto.png";
 import { Link } from "react-router-dom";
-
 import style from './Oracoes.module.css';
+import { PcomQuebraLinha } from "../../components";
 
 const Oracoes = () => {
-  const [oracaoAtual, setOracaoAtual] = useState(oracoes.PaiNosso);
-  const [sTerco, setSTerco] = useState(false);
+  const [oracaoAtual, setOracaoAtual] = useState();
+  const [sTerco, setSTerco] = useState(null);
   const [misterioAtual, setMisterioAtual] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [receberOracoes, setReceberOracoes] = useState([]);
+  const [receberTerco, setReceberTerco] = useState(null);
+
+  const url = 'https://www.paroquiascjesus.com.br/api/api/';
+
+  // Função para carregar as orações
+const carregarOracoes = async () => {
+  try {
+    const response = await fetch(`${url}oracao.php`)
+     if(!response.ok){
+       throw new Error(`Erro: ${response.status}`);
+     }
+     const data = await response.json();
+     setReceberOracoes(data.data);
+   } catch (error) {
+     console.error("Erro ao carregar orações:", error); 
+   }
+ };
 
 
-  const clickBotao = (oracaoKey) => {
-    const oracao = oracoes[oracaoKey];
-    setSTerco(false);
-    setOracaoAtual(oracao);
-    setMenuOpen(false);
+   const carregarTerco = async () =>{
+     try{
+       const response = await fetch(`${url}terco.php`);
+       const data = await response.json();
+       setReceberTerco(data.data);
+       // console.log(data.data)
+     }catch{
+       console.log("Erro ao receber terço");
+     }
+   }
 
-  };
+   // Função de clique para mudar a oração
+   const clickBotao = (oracaoId) => {
+     const oracaoSelecionada = receberOracoes.find((oracao) => oracao.id === oracaoId); // Encontrando a oração correta
+     if (oracaoSelecionada) {
+       setOracaoAtual(oracaoSelecionada); // Atualizando a oração atual com a correta
+     }
+     setSTerco(false);
+     setMenuOpen(false);
+   };
 
-  const clickSTerco = (oracaoKey) => {
-    const terco = oracoes[oracaoKey];
-    setOracaoAtual(null);
-    setSTerco(terco);
-    setMenuOpen(false);
-  };
+   // Função de clique para o Terço
+   const clickSTerco = () => {
+     if (receberTerco){
+         setOracaoAtual(null);
+         setSTerco(receberTerco);
+         setMenuOpen(false);
+     } else console.log("terço não carregado")
+   };
 
-  const clickMisterio = (contemplacaoKey) =>{
-    const misterio = oracoes.STerco.contemplacoes[contemplacaoKey];
-    setMisterioAtual(misterio);
-  }
+   const clickMisterio = (contemplacaoKey) => {
+     if(sTerco && sTerco.contemplacoes){
+       const misterio = sTerco.contemplacoes[contemplacaoKey];
+       setMisterioAtual(misterio);
+     }
+   };
 
-  const splitMisterio = (texto) =>{
-    return texto.split("\n\n").map((paragrafo, index) =>(
-        <p key={index}>{paragrafo}</p>
-    ));
-  };
+   const splitMisterio = (texto) => {
+     return texto.split("\n\n" || "\n").map((paragrafo, index) => (
+       <p key={index}>{paragrafo}</p>
+     ));
+   };
 
-  const clickMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+   const clickMenu = () => {
+     setMenuOpen(!menuOpen);
+   };
+  
+     useEffect(() => {
+       carregarOracoes();
+      carregarTerco();
+  }, []);
 
-  return (
-    <div className={style.Oracoes}>
-      <div className={style.containerOracao}>
-        <h1>Orações</h1>
-        <Link to="#" onClick={() => clickMenu()}>
-          <img src={menu} alt="" className={style.menu} />
-        </Link>
-      </div>
-      <section>
-        <div className={style.containerLinks}>
-          <a href="#" onClick={() => clickBotao("Apostolado")}>
-            Apostolado da Oração
-          </a>
-          <a href="#" onClick={() => clickBotao("AveMaria")}>
-            Ave Maria
-          </a>
-          <a href="#" onClick={() => clickBotao("Creio")}>
-            Creio
-          </a>
-          <a href="#" onClick={() => clickBotao("Divino")}>
-            Divino Espírito Santo
-          </a>
-          <a href="#" onClick={() => clickBotao("Gloria")}>
-            Glória
-          </a>
-          <a href="#" onClick={() => clickBotao("PaiNosso")}>
-            Pai Nosso
-          </a>
-          <a href="#" onClick={() => clickBotao("SalveRainha")}>
-            Salve Rainha
-          </a>
-          <a href="#" onClick={() => clickBotao("SLourenco")}>
-            São Lourenço
-          </a>
-          <a href="#" onClick={() => clickBotao("SMiguel")}>
-            São Miguel
-          </a>
-          <a href="#" onClick={() => clickSTerco("STerco")}>
-            Santo Terço
-          </a>
-        </div>
-        {menuOpen && (
-      <div className={style.menuOpen}>
-        <a href="#" onClick={() => clickBotao("Apostolado")}>
-            Apostolado da Oração
-          </a>
-          <a href="#" onClick={() => clickBotao("AveMaria")}>
-            Ave Maria
-          </a>
-          <a href="#" onClick={() => clickBotao("Creio")}>
-            Divino Espírito Santo
-          </a>
-          <a href="#" onClick={() => clickBotao("Divino")}>
-            Creio
-          </a>
-          <a href="#" onClick={() => clickBotao("Gloria")}>
-            Glória
-          </a>
-          <a href="#" onClick={() => clickBotao("PaiNosso")}>
-            Pai Nosso
-          </a>
-          <a href="#" onClick={() => clickBotao("SalveRainha")}>
-            Salve Rainha
-          </a>
-          <a href="#" onClick={() => clickBotao("SLourenco")}>
-            São Lourenço
-          </a>
-          <a href="#" onClick={() => clickBotao("SMiguel")}>
-            São Miguel
-          </a>
-          <a href="#" onClick={() => clickSTerco("STerco")}>
-            Santo Terço
-          </a>
-      </div>
-      )}
-        <article id="cotainerOracao">
-          {oracaoAtual ? (
-            <div>
-              <h2>{oracaoAtual.titulo}</h2>
-              <p>{oracaoAtual.oracao}</p>
-            </div>
-          ) : sTerco ? (
-            <div>
-              <h2>{sTerco.titulo}</h2>
-              <p>{sTerco.inicio}</p>
-              <hr />
-              <div className={style.Misterios}>
-                <a href="#" onClick={() => clickMisterio("gozosos")}>Gozosos</a>
-                <a href="#" onClick={() => clickMisterio("dolorosos")}>Dolorosos</a>
-                <a href="#" onClick={() => clickMisterio("luminosos")}>Luminosos</a>
-                <a href="#" onClick={() => clickMisterio("gloriosos")}>Gloriosos</a>
-              </div>
-              <hr />
-              <p>{sTerco.misterios}</p>
-              {misterioAtual ? (
-                <div>
-                    <p>Mistérios {misterioAtual.misterio}</p>
-                    <p>dia: {misterioAtual.dia}</p>
-                    <p>{splitMisterio(misterioAtual.contemplacao)}</p>
-                </div>
-              ) : (
-              <p>Escolha um mistério</p>
-
-              )}
-
-              <hr />
-              <p>{sTerco.final}</p>
-            </div>
-          ) : (
-            <p>Orações aqui</p>
-          )}
-        </article>
-      </section>
-    </div>
-  );
+     //definindo oração inicial
+     useEffect(() => {
+       if (receberOracoes.length > 0) {
+         // Definindo uma oração padrão (por exemplo, o Santo Terço ou a primeira oração)
+         setOracaoAtual(receberOracoes[5]);  // Aqui, a primeira oração será a padrão
+       }
+      
+     }, [receberOracoes]);
+  
+   return (
+     <div className={style.Oracoes}>
+       <div className={style.containerOracao}>
+         <h1>Orações</h1>
+         <Link to="#" onClick={() => clickMenu()}>
+           <img src={menu} alt="" className={style.menu} />
+         </Link>
+       </div>
+       <section>
+         <div className={style.containerLinks}>
+           {/* Verificando se as orações estão carregadas */}
+           {receberOracoes.length === 0 ? (
+             <p>Carregando orações...</p> // Mensagem enquanto não há orações
+           ) : (
+             receberOracoes.map((oracao) => (
+               <a
+                 href="#"
+                 key={oracao.id} // Usando o ID como chave para cada link de oração
+                 onClick={() => clickBotao(oracao.id)} // Passando o ID para o clique
+               >
+                 {oracao.titulo}
+               </a>
+             ))
+           )}
+           {/* Links fixos para orações adicionais */}
+           <a href="#" onClick={() => clickSTerco("STerco")}>Oração do Santo Terço</a>
+         </div>
+         {menuOpen && (
+           <div className={style.menuOpen}>
+             {/* Verificando se as orações estão carregadas */}
+           {receberOracoes.length === 0 ? (
+             <p>Carregando orações...</p> // Mensagem enquanto não há orações
+           ) : (
+             receberOracoes.map((oracao) => (
+               <a
+                 href="#"
+                 key={oracao.id} // Usando o ID como chave para cada link de oração
+                 onClick={() => clickBotao(oracao.id)} // Passando o ID para o clique
+               >
+                 {oracao.titulo}
+               </a>
+             ))
+           )}
+           {/* Links fixos para orações adicionais */}
+           <a href="#" onClick={() => clickSTerco("STerco")}>Santo Terço</a>
+           </div>
+         )}
+         <article id="cotainerOracao">
+           {oracaoAtual ? (
+             <div>
+               <h2>{oracaoAtual.titulo}</h2>
+               <PcomQuebraLinha texto={oracaoAtual.oracao}/>
+             </div>
+           ) : sTerco ? (
+             <div>
+               <h2>{sTerco.titulo}</h2>
+               <p>{sTerco.inicio}</p>
+               <hr />
+               <div className={style.Misterios}>
+                 <a href="#" onClick={() => clickMisterio("gozosos")}>Gozosos</a>
+                 <a href="#" onClick={() => clickMisterio("dolorosos")}>Dolorosos</a>
+                 <a href="#" onClick={() => clickMisterio("luminosos")}>Luminosos</a>
+                 <a href="#" onClick={() => clickMisterio("gloriosos")}>Gloriosos</a>
+               </div>
+               <hr />
+               <p>{sTerco.misterios}</p>
+               {misterioAtual ? (
+                 <div>
+                   <p>Mistérios {misterioAtual.misterio}</p>
+                   <p>Dia: {misterioAtual.dia}</p>
+                   <p>{splitMisterio(misterioAtual.contemplacao)}</p>
+               </div>
+             ) : (
+               <p>Escolha um mistério</p>
+             )}
+             <hr />
+             <p>{sTerco.final}</p>
+             </div>
+           ) : (
+             <p>Orações aqui</p>
+           )}
+         </article>
+       </section>
+     </div>
+   );
 };
 
 export { Oracoes };

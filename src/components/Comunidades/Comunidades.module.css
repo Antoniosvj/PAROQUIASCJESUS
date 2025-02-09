@@ -1,21 +1,33 @@
+
 .Comunidades{
     margin: 0 auto;
-    padding: 1% 20%;
+    padding: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    position: relative;
 }
 .containerBotao{
     display: flex;
     flex-direction: column;
-    width: 45%;
 }
 
 .containerComunidades{
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    width: 80%;
 }
 .containerBotao h3{
     margin-top: 15px;
+}
+
+@media (min-width: 768px) {
+    .containerComunidades{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    .containerBotao{
+        width: 45%;
+    }
 }

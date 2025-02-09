@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import style from "./Liturgia.module.css";
 
 const Liturgia = () => {
-  const url = "https://liturgiadiaria.site/";
+  const url = "https://liturgia.up.railway.app/";
   const [leituras, setLeituras] = useState(null);
   const [leituraAtual, setLeituraAtual] = useState("primeiraLeitura"); // Estado para controlar a leitura atual
 

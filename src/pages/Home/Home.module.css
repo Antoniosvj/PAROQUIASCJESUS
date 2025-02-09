@@ -5,7 +5,7 @@
     align-items: center;
 }
 .FolderInicial{
-    background-image:  url('../../assets/images/Capa-10.jpg');
+    background-image:  url('/images/Capa-10.jpg');
     background-repeat: no-repeat;
     background-size: contain;
     width: 1000px;
@@ -33,6 +33,12 @@
     flex-direction: column;
     margin: 30px;
 }
+
+.PalavraCard div{
+    display: flex;
+    flex-direction: column;
+}
+
 .Paroquia div{
     display: flex;
     flex-direction: row;
@@ -49,6 +55,7 @@
     padding: 10px;
     gap:5px;
 }
+
 .ParoquiaCard img{
     max-width: 300px;
     max-height: 300px;
@@ -59,6 +66,54 @@
     color: var(--preto);
     font-weight: 100;
 }
+
+.ParoquiaAcao{
+    border: 2px solid var(--vermelho);
+    border-radius: 12px;
+    width: 1000px;
+    padding: 10px auto;
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+
+}
+
+.ParoquiaAcao p{
+    padding: 1rem;
+}
+.AcaoCard{
+    border:2px solid var(--cinza-escuro);
+    width: 90%;
+    margin: 15px auto;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    gap:5px;
+}
+.AcaoCard img{
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 12px;
+}
+
+.AcaoCard div{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto 10px;
+}
+
+.AcaoCard p{
+    color: var(--preto);
+    font-weight: 100;
+}
+
+.AcaoCard small{
+    text-align: right;
+}
+
 .ContainerContatos{
     display: flex;
     flex-direction: row;
@@ -74,6 +129,30 @@
 .ContainerIcons img{
     width: 80px;
 }
+
+.ParoquiaCard small{
+    width: 70%;
+    text-align: right;
+    color: var(--preto)
+}
+
+/* Estilo para os botões do carrossel */
+.carousel-control-prev, 
+.carousel-control-next {
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo transparente escuro para as setas */
+  border-radius: 50%; /* Tornar os botões redondos */
+}
+
+.carousel-control-prev-icon, 
+.carousel-control-next-icon {
+  filter: invert(1); /* Inverter as cores para as setas ficarem visíveis em fundo escuro */
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: rgba(0, 0, 0, 0.7); /* Cor um pouco mais forte ao passar o mouse */
+}
+
 
 /*telas de celulares*/
 @media screen and (max-width: 576px) {
@@ -98,10 +177,12 @@
     .container{
         width: 100%;
     }
-    .Paroquia{
+    .Paroquia,
+    .ParoquiaAcao{
         width: 95%;
         margin: 8px;
     }
+
     .Paroquia div{
         flex-direction: column;
     }
@@ -134,5 +215,19 @@
     }
     .ContainerIcons img{
         width: 60px;
+    }
+
+    .AcaoCard{
+        width: 80%;
+        margin: 10px  auto;
+        flex-direction: column;
+    }
+
+    .AcaoCard img{
+        max-width: 90%;
+    }
+    
+    .AcaoCard div{
+        width: 90%;
     }
 }
