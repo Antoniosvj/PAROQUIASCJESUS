@@ -1,0 +1,22 @@
+.containerFooter{
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--cinza-escuro);
+    padding: 15px;
+}
+.containerLinks{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.containerImage img{
+    max-height: 100px;
+}
+
+/*telas pequenas*/
+@media screen and (max-width: 576px) {
+    .containerFooter{
+        display: none;
+    }
+}

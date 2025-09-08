@@ -1,0 +1,82 @@
+Array
+(
+    [file] => Array
+        (
+            [name] => video-demonstrativo.png
+            [full_path] => video-demonstrativo.png
+            [type] => image/png
+            [tmp_name] => /tmp/phpmoXwRW
+            [error] => 0
+            [size] => 686
+        )
+
+)
+Array
+(
+)
+Array
+(
+    [file] => Array
+        (
+            [name] => video-demonstrativo.png
+            [full_path] => video-demonstrativo.png
+            [type] => image/png
+            [tmp_name] => /tmp/phpNEh7N9
+            [error] => 0
+            [size] => 686
+        )
+
+)
+Array
+(
+)
+Array
+(
+)
+Array
+(
+)
+Array
+(
+    [file] => Array
+        (
+            [name] => video-demonstrativo.png
+            [full_path] => video-demonstrativo.png
+            [type] => image/png
+            [tmp_name] => /tmp/phpbk5oyH
+            [error] => 0
+            [size] => 686
+        )
+
+)
+Array
+(
+)
+Array
+(
+)
+Array
+(
+)
+Array
+(
+    [file] => Array
+        (
+            [name] => video-demonstrativo.png
+            [full_path] => video-demonstrativo.png
+            [type] => image/png
+            [tmp_name] => /tmp/php6MKZ5J
+            [error] => 0
+            [size] => 686
+        )
+
+)
+Array
+(
+)
+Array
+(
+)
+Array
+(
+)

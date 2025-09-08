@@ -12,3 +12,7 @@
 # Build
 
 * npm run build
+
+
+criar um arquivo .env com o seguinte código
+VITE_API_URL="http://localhost:8000/"

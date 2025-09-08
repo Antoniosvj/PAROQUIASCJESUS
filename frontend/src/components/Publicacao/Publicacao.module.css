@@ -1,0 +1,22 @@
+.containerPublicacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    margin: 30px auto;
+    
+    & .containerImagem img{
+        width: 80vw;
+        max-width: 800px;
+    }
+
+}
+
+
+@media screen and (max-width: 576px) {
+    .containerImagem img{
+        width: 60vw;
+    }
+
+}

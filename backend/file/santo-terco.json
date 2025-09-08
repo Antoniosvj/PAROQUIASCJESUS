@@ -1,0 +1,28 @@
+{
+        "titulo": "Santo Terço",
+        "inicio": "Em nome do Pai, do Filho e do Espírito Santo. Amém!\n(reza-se a oração do Creio e do Pai-Nosso, três Ave-Marias e o Glória ao Pai)",
+        "misterios": "Reza-se em cada misterio 1 Pai Nosso e 10 Ave-Maria",
+        "final": "Finaliza-se o Santo Terço com a Oração da Salve-Rainha.",
+        "contemplacoes":{
+            "gozosos": {
+                "misterio": "Gozosos",
+                "dia": "segunda-feira e sabado",
+                "contemplacao": "- 1º mistério contemplamos: Anunciação do anjo a Maria;\n\n- 2º mistério contemplamos: Visitação de Maria a Santa Isabel;\n\n- 3º mistério contemplamos: Nascimento do Menino Deus;\n\n- 4º mistério contemplamos: Apresentação de Jesus no Templo;\n\n- 5º mistério contemplamos: Perda e encontro de Jesus." 
+            },
+            "dolorosos":{
+                "misterio": "Dolorosos",
+                "dia": "terça-feira e sexta-feira",
+                "contemplacao": "- 1º mistério contemplamos: Oração e agonia de Jesus no Getsémani;\n\n- 2º mistério contemplamos: Flagelação de Cristo;\n\n- 3º mistério contemplamos: A coroação de espinhos;\n\n- 4º mistério contemplamos: A subida ao Calvário;\n\n- 5º mistério contemplamos: A morte na cruz."
+            },
+            "gloriosos":{
+                "misterio": "Gloriosos",
+                "dia": "quarta-feira, domingo",
+                "contemplacao": "- 1º mistério contemplamos: Ressurreição do Senhor;\n\n- 2º mistério contemplamos: A ascensão de Jesus;\n\n- 3º mistério contemplamos: Pentecostes - A vinda do Espírito sobre Maria e os apóstolos;\n\n- 4º mistério contemplamos: Maria assunta aos céus;\n\n- 5º mistério contemplamos: Maria coroada Rainha dos anjos e dos santos."
+            },
+            "luminosos":{
+                "misterio": "Luminosos",
+                "dia": "quinta-feira",
+                "contemplacao": "- 1º mistério contemplamos: Batismo de Jesus no Jordão;\n\n- 2º mistério contemplamos: Milagre de Jesus nas bodas de Caná;\n\n- 3º mistério contemplamos: Anúncio do Reino de Deus com um convite à conversão;\n\n- 4º mistério contemplamos: Transfiguração do Senhor;\n\n- 5º mistério contemplamos: Instituição da Eucaristia."
+            }
+        }   
+}
