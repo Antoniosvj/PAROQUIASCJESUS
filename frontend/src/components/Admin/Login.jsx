@@ -51,8 +51,6 @@ export const Login = ({ onLogin }) => {
   return (
     <div>
       <h2>Login</h2>
-      <small>email teste: admin@admin.com</small><br/>
-      <small>senha teste: senha123</small>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleLogin}>
         <label>
